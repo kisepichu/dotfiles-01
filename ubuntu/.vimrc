@@ -40,7 +40,7 @@ nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
 syntax on
-colorscheme molokai
+colorscheme darkblue
 set t_Co=256
 
 

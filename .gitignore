@@ -1,0 +1,3 @@
+ubuntu/.config/*
+!ubuntu/.config/fish
+!ubuntu/.config/starship.*
