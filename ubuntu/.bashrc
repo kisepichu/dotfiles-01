@@ -25,22 +25,31 @@ alias python=python3
 alias pip=pip3
 alias mtu='sudo ip link set eth0 mtu 1404'
 IGNOREEOF=4
+alias npm=pnpm
 
 eval "$(gh completion -s bash)"
 
 export GPG_TTY=$(tty)
 export WEZTERM_CONFIG_FILE=~/.wezterm.lua
 
+export PATH="/usr/local/texlive/2025/bin/x86_64-linux:$PATH"
+export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 export GOROOT=""
-export PATH="$(go env GOPATH)/bin:$PATH"
+if command -v go >/dev/null 2>&1; then
+  export PATH="$(go env GOPATH)/bin:$PATH"
+fi
 # export JAVA_HOME=~/zulu-8 ---------------------minecraft
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 export PATH=$JAVA_HOME/bin:$PATH
 export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 
+export PATH=$PATH:$HOME/.elan/bin
+
+export TYPST_FONT_PATHS="/mnt/c/fonts:/mnt/c/Windows/Fonts"
+
 export EDGEDEV="/mnt/c/Program Files (x86)/Microsoft/Edge Dev/Application/msedge.exe"
 export BRAVE="/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe"
-export BROWSER="$BRAVE"
+export BROWSER=wslview
 function browse() {
   "$BROWSER" $(wslpath -w $(realpath $1))
 }
@@ -68,7 +77,6 @@ if [ $(pwd | grep -c "$REPOS/ac-rs/compete") -gt 0 ]; then
 fi
 
 if [ $SHLVL = 1 ]; then
-  # tmuxにセッションがなかったら新規セッションを立ち上げた際に分割処理設定を読み込む
   alias tmux="tmux -2 attach || tmux -2 new-session \; source-file ~/.tmux/new-session"
 fi
 
@@ -197,13 +205,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export PATH=/mnt/c/Users/shktm/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
+
 # anyenv setting
 # export PATH=${PATH}:/mnt/c/Windows/system32:${HOME}/.anyenv/bin:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/usr/local/bin/:/usr/local/bin/docker-compose:/home/ubuntu/registry/volumes/certs
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+# . $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/completions/asdf.bash
 # eval "$(anyenv init -)"
 
-export DOCKER_HOST='tcp://0.0.0.0:2375'
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
@@ -227,3 +236,5 @@ case ":$PATH:" in
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="/home/kise/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/kise/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"

@@ -1,3 +1,7 @@
+# vscode の terminal integration のバグ? により、勝手にプロンプトの最後に改行が入ってしまう。
+# 応急処置として、 format の \n> ごとなくし、 vscode 内のプロンプトで > を表示する。
+
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
 palette = "miku"
@@ -27,7 +31,8 @@ $scala\
 $docker_context\
 [](fg:color_docker bg:color_time)\
 $time\
-[ ](fg:color_time)\n$character"""
+[ ](fg:color_time)    $character
+"""
 
 # # Disable the blank line at the start of the prompt
 # add_newline = false
@@ -209,6 +214,6 @@ color_error = '#ef86bb'
 
 
 [character]
-disabled = false
-success_symbol = '[>](bold fg:color_ok)'
-error_symbol = '[>](bold fg:color_error)'
+disabled = true
+success_symbol = '[+](bold fg:color_ok)'
+error_symbol = '[+](bold fg:color_error)'

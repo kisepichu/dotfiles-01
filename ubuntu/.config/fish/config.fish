@@ -43,7 +43,5 @@ end
 starship init fish | source
 ~/.local/bin/mise activate fish | source
 zoxide init fish | source
-# # vscode の integration が使えるようにする https://code.visualstudio.com/docs/terminal/shell-integration#_features
-# starship と同時に使うと一行ずれることの解決策がわからないので今は無効にしている
-# string match -q "$TERM_PROGRAM" "vscode"
-# and . (code --locate-shell-integration-path fish)
+string match -q "$TERM_PROGRAM" "vscode"
+and . (code --locate-shell-integration-path fish)
